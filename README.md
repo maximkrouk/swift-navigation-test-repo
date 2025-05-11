@@ -64,7 +64,8 @@ private func onChange(
   of tracking: @escaping @Sendable (_ transaction: UITransaction) -> Void,
   perform action: @escaping @Sendable (_ transaction: UITransaction) -> Void,
   task: @escaping @Sendable (
-    _ transaction: UITransaction, _ operation: @escaping @Sendable () -> Void
+    _ transaction: UITransaction,
+    _ operation: @escaping @Sendable () -> Void
   ) -> Void
 ) {
   // I guess it's better to call it before
@@ -92,21 +93,21 @@ smth like
 ```swift
 @MainActor
 extension NSObject {
-	public func observe(
-		_ tracking: @escaping @MainActor @Sendable (UITransaction) -> Void,
-		onChange: @escaping @MainActor @Sendable (UITransaction) -> Void
-	) -> ObserveToken {
-		observe { transaction in
-			tracking(transaction)
+  public func observe(
+    _ tracking: @escaping @MainActor @Sendable (UITransaction) -> Void,
+    onChange: @escaping @MainActor @Sendable (UITransaction) -> Void
+  ) -> ObserveToken {
+    observe { transaction in
+      tracking(transaction)
       
       // escape from tracking context
-			DispatchQueue.main.async {
+      DispatchQueue.main.async {
         // keep the transaction
-				withUITransaction(transaction) {
-					onChange(transaction)
-				}
-			}
-		}
-	}
+        withUITransaction(transaction) {
+          onChange(transaction)
+        }
+      }
+    }
+  }
 }
 ```
