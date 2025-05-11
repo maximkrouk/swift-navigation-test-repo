@@ -1,5 +1,11 @@
 # swift-navigation-test
 
+See LogicalExample folder for a simple showcase of the issue. Run the app and tap "Run logical example" button with "Experimental observation" toggle disabled (uses current swift-navigation API) or enabled (uses extended private swift-navigation API)
+
+<img src="./.media/screenshot2.png" width=200/>
+
+#### Old readme:
+
 This project is created to showcase an edgecase for swift-navigation, that I got into while experimenting with UI approach to App design system, I briefly recreated the structure of the project to reproduce the issue.
 
 <img src="./.media/screenshot.png" width=200/>
